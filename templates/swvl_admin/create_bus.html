@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .alert{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<form method="post">
+    {% if form %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert">
+                    <strong>{{ field.name }} - {{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+
+<input type="hidden" name="id" value="{% firstof bus.id  '' %}">
+
+    {% csrf_token %}
+<h1><a href="{% url 'admin_page' %}">Back</a></h1>
+    <table >
+        <tr>
+            <td>Bus Number</td>
+            <td><input name="bus_number" type="text" value="{{ bus.bus_number }}"></td>
+        </tr>
+        <tr>
+            <td>Color Bus</td>
+            <td><input name="color_bus" type="text" value="{{ bus.color_bus }}"></td>
+        </tr>
+        <tr>
+            <td>Number Seat</td>
+            <td><input name="number_seat" type="text" value="{{ bus.number_seat }}"></td>
+        </tr>
+        <tr>
+            <td>Model Bus</td>
+            <td><input name="model_bus" type="text" value="{{ bus.model_bus }}"></td>
+        </tr>
+{#        <tr>#}
+{#            <td>From Date</td>#}
+{#            <td><input name="from_date" type="datetime-local"></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>To Date</td>#}
+{#            <td><input name="To_date" type="datetime-local"></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>Bus track From Address</td>#}
+{#            <td><input name="track_from_address" type="text"></td>#}
+{#        </tr>#}
+{#        <tr>#}
+{#            <td>Bus Track To Address</td>#}
+{#            <td><input name="track_to_address" type="text"></td>#}
+{#        </tr>#}
+
+            <td><input type="submit"></td>
+
+    </table>
+</form>
+</body>
+</html>

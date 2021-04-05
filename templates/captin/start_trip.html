@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <table width="80%">
+        <tr>
+            <td>Bus</td>
+            <td>Captin</td>
+            <td>From Address</td>
+            <td>To Address</td>
+            <td>From Date</td>
+            <td>To Date</td>
+            <td>Reserves</td>
+            <td>price</td>
+        </tr>
+        <tr>
+            <td>{{ trip.bus.bus_number }}</td>
+            <td>{{ trip.caotin.frist_name }} {{ trip.captin.last_name }}</td>
+            <td>{{ trip.from_address }}</td>
+            <td>{{ trip.to_address }}</td>
+            <td>{{ trip.from_date }}</td>
+            <td>{{ trip.to_date }}</td>
+            <td>{{ trip.reserved }}</td>
+            <td>{{ trip.price }}</td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

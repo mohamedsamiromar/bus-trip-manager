@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2> Where To..?</h2>
+<form method="post" action="{% url 'where_to' %}">
+<input type="hidden" name="id" value="{% firstof booking.id  '' %}">
+
+{% csrf_token %}
+<a href="{% url 'home' %}">Back</a>
+<table>
+    <tr>
+        <td>From Address</td>
+        <td><input name="from_address" type="text" value="{{ from_address }}"></td>
+    </tr>
+    <tr>
+        <td>To Address</td>
+        <td><input name="to_address"  type="text" value="{{ to_address}}"></td>
+    </tr>
+    <tr>
+        <td>Date</td>
+        <td><input name="date" type="text" value="{{ trip.from_date | date:"yy-m-d h:m:s" }}"> {{ trip.from_date | date:"A"  }}</td>
+    </tr>
+    <tr>
+        <button type="submit">Search</button>
+    </tr>
+</table>
+<table border="1">
+ <tr>
+     <th>from Address</th>
+     <th>To Date</th>
+     <th>From Date</th>
+     <th>To Date</th>
+     <th>Reserve</th>
+    </tr>
+    {% for trip in trips %}
+        <tr>
+        <td>{{ trip.from_address }}</td>
+        <td>{{ trip.to_address }}</td>
+        <td>{{ trip.from_date }}</td>
+        <td>{{ trip.to_date}}</td>
+        <td><a href="/passenger/reserve?trip_id={{ trip.id }}" >reserve</a></td>
+
+        </tr>
+    {% endfor %}
+</table>
+</form>
+</body>
+</html>

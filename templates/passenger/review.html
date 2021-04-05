@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    {% csrf_token %}
+    <input type="hidden" name="trip_id" value="{{ trip.id }}">
+    <table width="60%" border="1">
+        <h2>Review</h2>
+        <h3>Tip</h3>
+        <tr>
+            <th>from address</th>
+            <th>to Address </th>
+            <th>Captin</th>
+            <th>Bus number</th>
+        </tr>
+        <tr>
+            <td>{{ trip_id.from_address }}</td>
+            <td>{{ trip_id.to_address }}</td>
+            <td>{{ trip_id.captin.user.first_name }} {{ trip_id.last_name }}</td>
+            <td>{{ trip_id.bus.bus_number }}</td>
+        </tr>
+    </table>
+    <table width="60%">
+        <h3>Review</h3>
+        <tr>
+            <td>Note</td>
+            <td><input name="note" type="taxt"></td>
+        </tr>
+        <tr>
+            <td>Rate</td>
+            <td><input name="rate" type="text" value=" from 10"></td>
+        </tr>
+        <tr>
+            <td><input value="save" type="submit" ></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

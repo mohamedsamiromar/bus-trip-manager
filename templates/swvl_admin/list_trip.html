@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>All Trips</h2>
+<form method="get">
+    {% csrf_token %}
+<h4><a href="{% url 'admin_page' %}">Back</a></h4>
+    <table border="1" >
+        <tr>
+            <th>ID</th>
+            <th>Bus</th>
+            <th>Captin</th>
+            <th>From Address</th>
+            <th>To Address</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Price</th>
+            <th>Edits</th>
+        </tr>
+        {% for trip in trips %}
+        <tr>
+            <td>{{ trip.id }}</td>
+            <td>{{trip.bus.bus_number }}</td>
+            <td>{{ trip.captin.user.first_name }} {{ trip.captin.user.last_name }}</td>
+            <td>{{ trip.from_address }}</td>
+            <td>{{ trip.to_address }}</td>
+            <td>{{ trip.from_date }}</td>
+            <td>{{ trip.to_date }}</td>
+            <td>{{ trip.price }}</td>
+            <td><a href="/swvl_admin/create_trip?trip_id={{ trip.id }}">Edit</a></td>
+        </tr>
+        {% endfor %}
+
+    <div class="pagination">
+    <span class="step-links">
+        {% if pages.has_previous %}
+            <a href="?pages=1">&laquo; first</a>
+            <a href="?pages={{ pages.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ pages.number }} of {{ pages.paginator.num_pages }}.
+        </span>
+
+        {% if pages.has_next %}
+            <a href="?pages={{ pages.next_page_number }}">next</a>
+            <a href="?pages={{ pages.paginator.num_pages }}">last &raquo;</a>
+        {% endif %}
+    </span>
+</div>
+     </table>
+</form>
+</body>
+</html>

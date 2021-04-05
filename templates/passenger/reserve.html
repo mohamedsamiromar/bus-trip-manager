@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="trip_id" value="{{ trip.id }}">
+    <h2>Reserve</h2>
+<table width="80%">
+
+    <tr>
+        <td>From Address</td>
+        <td>{{ trip.from_address }}</td>
+    </tr>
+    <tr>
+        <td>To Address</td>
+        <td>{{ trip.to_address }}</td>
+    </tr>
+    <tr>
+        <td>Seat</td>
+        <td><input name="reserve_seats" type="number" ></td>
+    </tr>
+    <tr>
+        <td>Price For One Seat </td>
+        <td>{{ trip.price }}</td>
+    </tr>
+    <tr>
+        <td><button type="submit">save</button></td>
+        <td><a href="/passenger/review?trip_id={{ trip.id }}">write your review</a></td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

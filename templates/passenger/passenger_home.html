@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin </title>
+</head>
+<body>
+<form>
+    {% csrf_token %}
+    <table border="1" width="80%">
+        <tr>
+            <th>Table Manegment</th>
+        </tr>
+        <tr>
+            <td><a href='{% url 'where_to' %}'>Go To Booking Trip</a></td>
+        <tr>
+        <tr>
+        <td><a href="{% url 'all_booking' %}">all booking</a></td>
+    </tr>
+    </table>
+    <h4><a href="{% url 'login' %}">Log out</a></h4>
+</form>
+</body>
+</html>

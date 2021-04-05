@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <style>
+        .alert{
+            color: red;
+        }
+    </style>
+</head>
+<body>
+<h2><a href="{% url 'admin_page' %}">Back</a></h2>
+
+<h1> Create Trip </h1>
+{% if form %}
+    {% if form.errors %}
+        {% for field in form %}
+            {% for error in field.errors %}
+                <div class="alert">
+                    <strong>{{ field.name }} - {{ error|escape }}</strong>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+            <div class="alert">
+                <strong>{{ error|escape }}</strong>
+            </div>
+        {% endfor %}
+    {% endif %}
+{% endif %}
+
+<form method="post">
+<input type="hidden" name="id" value="{% firstof trip.id  '' %}">
+
+        {% csrf_token %}
+    <table width="80%" border="1">
+        <tr>
+            <td>All Bus</td>
+            <td>
+                <select name="bus">
+                    {% for bus in buses%}
+                        <option value="{{ bus.id }}" name="bus">{{ bus.bus_number }}</option>
+                    {% endfor %}
+                </select>
+            </td>
+        </tr>
+        <tr>
+        <td>All Captin </td>
+        <td>
+            <select name="captin">
+                    {% for captin in captins %}
+            <option value="{{ captin.id }}" name="captin" >{{ captin.user.first_name }} {{ captin.user.last_name }}</option>
+                    {% endfor %}
+        </select></td>
+        </tr>
+    <tr>
+        <td>From Address</td>
+        <td><input name="from_address" type="text" value="{{ trip.from_address }}"></td>
+    </tr>
+    <tr>
+        <td>To Address</td>
+        <td><input name="to_address" type="text" value="{{ trip.to_address }}"></td>
+    </tr>
+    <tr>
+        <td>From Date</td>
+{#        <td><input name="from_date" type="datetime-local" value="{{ trip.from_date }}"></td>#}
+        <td><input name="from_date" type="text" value="{{ trip.from_date | date:"yy-m-d h:m:s" }}"> {{ trip.from_date | date:"A"  }}</td>
+    </tr>
+    <tr>
+        <td>To Date</td>
+{#        <td><input name="to_date" type="datetime-local" value="{{ trip.to_date }}"></td>#}
+        <td><input name="to_date" type="text" value="{{ trip.to_date | date:"yy-m-d h:m:s"  }}"> {{ trip.to_date | date:"A"  }}</td>
+    </tr>
+    <tr>
+        <td>Price</td>
+        <td><input type="number" name="price"></td>
+    </tr>
+    </table>
+        <td><input type="submit"></td>
+
+</form>
+</body>
+</html>

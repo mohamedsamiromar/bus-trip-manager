@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin </title>
+</head>
+<body>
+<form>
+    {% csrf_token %}
+    <table border="1" width="80%">
+        <h3><a href="{% url 'admin_page' %}">Back</a></h3>
+
+        <tr>
+            <th>Table Manegment</th>
+        </tr>
+        <tr>
+            <td><a href='{% url 'create_trip' %}'>create trip</a></td>
+        <tr>
+        <tr>
+            <td><a href="{% url 'list_trip' %}">all trips</a></td>
+        </tr>
+
+        <tr>
+            <td><a href="{% url 'add_bus' %}">create bus</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'list_captin' %}">Captins</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'buses' %}">Buses</a></td>
+        </tr>
+        <tr>
+            <td><a href="{% url 'booking_all' %}">All Booking</a></td>
+        </tr>
+
+    </table>
+    <h4><a href="{% url 'login' %}">Log out</a></h4>
+</form>
+</body>
+</html>

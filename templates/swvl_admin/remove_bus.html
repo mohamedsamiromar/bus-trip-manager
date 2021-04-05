@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post" ">
+    {% csrf_token %}
+    <table border="1">
+        <tr>
+            <th>Bus Number</th>
+            <th>Color Bus</th>
+            <th>Model Bus</th>
+            <th>Edit</th>
+            <th>delete</th>
+        </tr>
+     {% for bus in buses  %}
+         <tr>
+            <td>{{ bus.bus_number }}</td>
+            <td>{{ bus.color_bus }}</td>
+            <td>{{ bus.model_bus }}</td>
+             <td><a href="/swvl_admin/add_bus?bus_id{{ bus.id }}">Edit</a></td>
+            <td> <a href="/swvl_admin/delete_bus?bus_id={{ bus.id }}">delete</a></td>
+         </tr>
+     {% endfor %}
+    </table>
+</form>
+</body>
+</html>

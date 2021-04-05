@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    {% csrf_token %}
+
+    <a href="{% url 'home' %}">Back</a>
+    <table border="1">
+        <tr>
+        <th>Passenger Name</th>
+        <th>Reserved Seats</th>
+        <th>From Address</th>
+        <th>To Address</th>
+        <th>Date for start trip</th>
+        <th>Price</th>
+        <th>Total Price</th>
+        <th>The actual time to book the Trip</th>
+        <th>Edit</th>
+        </tr>
+        {% for booking in bookings %}
+            <tr>
+                <td>{{ booking.passenger.user.first_name }} {{ booking.passenger.user.last_name }}</td>
+                <td>{{ booking.reserved_seats  }}</td>
+                <td>{{ booking.from_address }}</td>
+                <td>{{ booking.to_address }}</td>
+                <td>{{ booking.date_For_start_trip }}</td>
+                <td>{{ booking.price }}</td>
+                <td>{{ booking.total_price }}</td>
+                <td>{{ booking.date }}</td>
+                <td><a href="/passenger/where_to?booking_id={{ booking.id }}">Edit</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</form>
+
+</body>
+</html>

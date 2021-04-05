@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    <h3>All Trip</h3>
+
+    <table border="1">
+        <tr>
+            <th>Bus</th>
+            <th>Captin</th>
+            <th>From address</th>
+            <th>To Address</th>
+            <th>From Date</th>
+            <th>To Date</th>
+            <th>Price</th>
+            <th>Reserve</th>
+            <th>Start Trip</th>
+        </tr>
+        {% for trip in trips %}
+            <tr>
+            <td>{{ trip.bus.bus_number }}</td>
+            <td>{{ trip.captin.user.first_name }} {{ trip.captin.user.last_name }}</td>
+            <td>{{ trip.from_address }}</td>
+            <td>{{ trip.to_address }}</td>
+            <td>{{ trip.from_date }}</td>
+            <td>{{ trip.to_date }}</td>
+            <td>{{ trip.price }}</td>
+            <td>{{ trip.reserved }}</td>
+            <td><a href="/captin/start_trip?trip_id={{ trip.id }}"> star trips</a></td>
+            </tr>
+        {% endfor %}
+    </table>
+</form>
+
+</body>
+</html>
